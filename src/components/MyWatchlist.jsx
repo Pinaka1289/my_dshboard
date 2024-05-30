@@ -1,6 +1,6 @@
 import React from "react";
 
-const Watchlist = () => {
+const MyWatchlist = () => {
   return (
     <div className="bg-white shadow p-4 rounded">
       <h2 className="font-bold mb-4">Watchlist</h2>
@@ -34,4 +34,4 @@ const Watchlist = () => {
   );
 };
 
-export default Watchlist;
+export default MyWatchlist;

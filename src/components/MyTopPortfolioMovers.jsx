@@ -8,18 +8,19 @@ const MyTopPortfolioMovers = ({ trades }) => {
     return { totalReturn, percentageReturn };
   };
 
-  const sortedTrades = [...trades]
-    .map((trade) => ({
-      ...trade,
-      ...calculateTotalReturn(trade),
-    }))
-    .sort((a, b) => b.totalReturn - a.totalReturn);
+  const sortedTrades = [...trades].map((trade) => ({
+    ...trade,
+    ...calculateTotalReturn(trade),
+  }));
 
-  const topGainers = sortedTrades.slice(0, 5);
+  const topGainers = sortedTrades
+    .filter((trade) => trade.totalReturn > 0)
+    .sort((a, b) => b.percentageReturn - a.percentageReturn)
+    .slice(0, 5);
 
   const topLosers = sortedTrades
     .filter((trade) => trade.totalReturn < 0)
-    .sort((a, b) => a.totalReturn - b.totalReturn)
+    .sort((a, b) => a.percentageReturn - b.percentageReturn)
     .slice(0, 5);
 
   return (
@@ -39,7 +40,7 @@ const MyTopPortfolioMovers = ({ trades }) => {
                     {trade["NAME OF COMPANY"]}
                   </span>
                 </span>
-                <span className=" tooltip relative group">
+                <span className="tooltip relative group">
                   <span className="text-green-500">
                     {trade.percentageReturn.toFixed(2)}%
                   </span>

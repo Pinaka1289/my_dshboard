@@ -1,14 +1,28 @@
 import React from "react";
 
 const MyTopDayMovers = ({ trades }) => {
-  const sortedTrades = [...trades].sort((a, b) => {
+  // Filter and sort trades based on percentage change
+  const gainers = trades.filter(
+    (trade) => parseFloat(trade.percentage_change.replace(/[%+]/g, "")) > 0
+  );
+  const losers = trades.filter(
+    (trade) => parseFloat(trade.percentage_change.replace(/[%+]/g, "")) < 0
+  );
+
+  const sortedGainers = gainers.sort((a, b) => {
     const aChange = parseFloat(a.percentage_change.replace(/[%+]/g, ""));
     const bChange = parseFloat(b.percentage_change.replace(/[%+]/g, ""));
     return bChange - aChange;
   });
 
-  const topGainers = sortedTrades.slice(0, 5);
-  const topLosers = sortedTrades.slice(-5).reverse();
+  const sortedLosers = losers.sort((a, b) => {
+    const aChange = parseFloat(a.percentage_change.replace(/[%+]/g, ""));
+    const bChange = parseFloat(b.percentage_change.replace(/[%+]/g, ""));
+    return aChange - bChange;
+  });
+
+  const topGainers = sortedGainers.slice(0, 5);
+  const topLosers = sortedLosers.slice(0, 5);
 
   return (
     <div className="bg-white shadow p-4 rounded">
@@ -29,10 +43,10 @@ const MyTopDayMovers = ({ trades }) => {
                 </span>
                 <span className="tooltip relative group">
                   <span className="text-green-500">
-                    {trade.percentage_change}
+                    {trade.percentage_change.replace(/-/g, "")}
                   </span>
                   <span className="tooltiptext absolute bottom-full mb-2 hidden w-48 p-2 text-xs text-white bg-black rounded opacity-75 group-hover:block whitespace-normal">
-                    ₹{trade.price_change}
+                    ₹{trade.price_change.replace(/-/g, "")}
                   </span>
                 </span>
               </li>

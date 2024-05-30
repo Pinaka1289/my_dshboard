@@ -1,7 +1,14 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
+import AuthContext from "../contexts/AuthContext";
 
 const Sidebar = ({ user }) => {
+  const { logout } = useContext(AuthContext);
+
+  const handleSignOut = () => {
+    logout();
+  };
+
   return (
     <aside className="w-full md:w-64 bg-purple-100 p-4 bg-white shadow rounded">
       <div className="flex flex-col items-center mb-8">
@@ -13,6 +20,12 @@ const Sidebar = ({ user }) => {
         <h3 className="text-purple-700 font-bold">
           {user?.name || "User Name"}
         </h3>
+        <button
+          onClick={handleSignOut}
+          className="mt-2 px-4 py-2 bg-red-600 text-white rounded hover:bg-red-700"
+        >
+          Sign Out
+        </button>
       </div>
       <nav>
         <ul className="flex flex-col h-full">
@@ -43,6 +56,14 @@ const Sidebar = ({ user }) => {
             </Link>
           </li>
           <li className="mb-4">
+            <Link
+              to="/market-movers"
+              className="text-purple-700 hover:text-purple-900"
+            >
+              Market Movers
+            </Link>
+          </li>
+          <li className="mb-4">
             <a href="#" className="text-purple-700 hover:text-purple-900">
               Wallet Transfer Pay
             </a>
@@ -55,11 +76,6 @@ const Sidebar = ({ user }) => {
           <li className="mb-4">
             <a href="#" className="text-purple-700 hover:text-purple-900">
               Tutorial
-            </a>
-          </li>
-          <li className="mt-auto">
-            <a href="#" className="text-purple-700 hover:text-purple-900">
-              Logout
             </a>
           </li>
         </ul>

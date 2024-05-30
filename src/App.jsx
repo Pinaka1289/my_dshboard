@@ -1,36 +1,49 @@
 import React, { useContext } from "react";
-import {
-  Navigate,
-  BrowserRouter as Router,
-  Route,
-  Routes,
-} from "react-router-dom";
+import { Route, Routes, Navigate } from "react-router-dom";
 import LandingPage from "./components/LandingPage";
 import DashboardLayout from "./components/DashboardLayout";
 import NotFound from "./components/NotFound";
 import AuthContext from "./contexts/AuthContext";
 import PrivateRoute from "./components/PrivateRoute";
-import ResearchPortal from "./components/ResearchPortal"; // Import the new component
+import Dashboard from "./components/Dashboard";
+import ResearchPortal from "./components/ResearchPortal";
+import MarketMovers from "./components/MarketMovers"; // Import the new component
 
 const App = () => {
   const { isAuthenticated, user } = useContext(AuthContext);
 
   return (
-    <div>
-      <Routes>
-        <Route path="/landing" element={<LandingPage />} />
-        {/* <PrivateRoute path="/dashboard">
-          <Dashboard />
-        </PrivateRoute> */}
+    <Routes>
+      <Route path="/landing" element={<LandingPage />} />
+      <Route element={<PrivateRoute />}>
         <Route
-          element={<DashboardLayout />} // Wrap these routes with DashboardLayout
-        ></Route>
-        <Route path="/dashboard" element={<DashboardLayout user={user} />} />
-        <Route path="/research" element={<ResearchPortal />} />
-        <Route path="/" element={<Navigate to="/landing" />} />
-        <Route path="*" element={<NotFound />} />
-      </Routes>
-    </div>
+          path="/dashboard"
+          element={
+            <DashboardLayout user={user}>
+              <Dashboard />
+            </DashboardLayout>
+          }
+        />
+        <Route
+          path="/research"
+          element={
+            <DashboardLayout user={user}>
+              <ResearchPortal />
+            </DashboardLayout>
+          }
+        />
+        <Route
+          path="/market-movers"
+          element={
+            <DashboardLayout user={user}>
+              <MarketMovers />
+            </DashboardLayout>
+          }
+        />
+      </Route>
+      <Route path="/" element={<Navigate to="/landing" />} />
+      <Route path="*" element={<NotFound />} />
+    </Routes>
   );
 };
 

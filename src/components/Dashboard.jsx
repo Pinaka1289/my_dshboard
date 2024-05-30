@@ -5,7 +5,7 @@ import MyTopDayMovers from "./MyTopDayMovers";
 import MyTopPortfolioMovers from "./MyTopPortfolioMovers";
 import Snapshot from "./Snapshot";
 import PortfolioAnalytics from "./PortfolioAnalytics";
-import Watchlist from "./Watchlist";
+import MyWatchlist from "./MyWatchlist";
 import { useNavigate } from "react-router-dom";
 import MyTrades from "./MyTrades";
 import useFetch from "../hooks/useFetch";
@@ -83,11 +83,11 @@ const Dashboard = () => {
       ) : (
         <MyTopPortfolioMovers trades={trades} />
       )}
-      <div className="lg:col-span-3">
+      {/* <div className="lg:col-span-3">
         <Snapshot />
       </div>
-      <PortfolioAnalytics />
-      <Watchlist />
+      <PortfolioAnalytics /> */}
+      <MyWatchlist />
       <button
         onClick={handleLogout}
         className="w-full px-4 py-2 mt-4 bg-secondary text-white rounded"

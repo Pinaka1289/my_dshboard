@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import AuthContext from "../contexts/AuthContext";
@@ -7,7 +7,7 @@ import apiConfig from "../config/apiConfig"; // Import the configuration
 const SignIn = ({ onToggle }) => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const [isSignUp, setIsSignUp] = useState(false);
+  const { login } = useContext(AuthContext);
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
@@ -35,6 +35,7 @@ const SignIn = ({ onToggle }) => {
         })
         .then((response) => {
           localStorage.setItem("token", response.data.access_token);
+          login(username, response.data.access_token); // Update the authentication context
           navigate("/dashboard");
         });
     } catch (error) {

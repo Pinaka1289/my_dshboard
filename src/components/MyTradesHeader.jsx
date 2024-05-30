@@ -46,6 +46,9 @@ const MyTradesHeader = () => {
         <th className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider sticky top-0 bg-gradient-to-r from-green-400 via-blue-500 to-purple-600 text-white z-10">
           Target Reached
         </th>
+        <th className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider sticky top-0 bg-gradient-to-r from-green-400 via-blue-500 to-purple-600 text-white z-10">
+          Actions
+        </th>
       </tr>
     </thead>
   );
