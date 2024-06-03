@@ -8,6 +8,7 @@ const apiConfig = {
   SIGN_UP: `${API_BASE_URL}/signup`,
   ALL_STOCKS: `${API_BASE_URL}/stocks/all`,
   ALL_TICKERS: `${API_BASE_URL}/stocks/stock_tickers`,
+  MAIN_INDICES: `${API_BASE_URL}/market_movers/main_indices`,
   // Add more endpoints as needed
 };
 
