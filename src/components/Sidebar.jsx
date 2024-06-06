@@ -2,8 +2,8 @@ import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import AuthContext from "../contexts/AuthContext";
 
-const Sidebar = ({ user }) => {
-  const { logout } = useContext(AuthContext);
+const Sidebar = () => {
+  const { username, logout } = useContext(AuthContext);
 
   const handleSignOut = () => {
     logout();
@@ -13,13 +13,11 @@ const Sidebar = ({ user }) => {
     <aside className="w-full md:w-64 bg-purple-100 p-4 bg-white shadow rounded">
       <div className="flex flex-col items-center mb-8">
         <img
-          src={user?.image || "https://via.placeholder.com/100"}
+          src={"https://via.placeholder.com/100"}
           alt="User"
           className="w-24 h-24 rounded-full mb-4"
         />
-        <h3 className="text-purple-700 font-bold">
-          {user?.name || "User Name"}
-        </h3>
+        <h3 className="text-purple-700 font-bold">{username || "User Name"}</h3>
         <button
           onClick={handleSignOut}
           className="mt-2 px-4 py-2 bg-red-600 text-white rounded hover:bg-red-700"
@@ -64,18 +62,17 @@ const Sidebar = ({ user }) => {
             </Link>
           </li>
           <li className="mb-4">
-            <a href="#" className="text-purple-700 hover:text-purple-900">
-              Wallet Transfer Pay
-            </a>
+            <Link
+              to="/my-analysis"
+              className="text-purple-700 hover:text-purple-900"
+            >
+              My Analysis
+            </Link>
           </li>
+
           <li className="mb-4">
             <a href="#" className="text-purple-700 hover:text-purple-900">
               Reporting & Transaction
-            </a>
-          </li>
-          <li className="mb-4">
-            <a href="#" className="text-purple-700 hover:text-purple-900">
-              Tutorial
             </a>
           </li>
         </ul>

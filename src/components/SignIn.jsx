@@ -34,8 +34,10 @@ const SignIn = ({ onToggle }) => {
           ],
         })
         .then((response) => {
-          localStorage.setItem("token", response.data.access_token);
-          login(username, response.data.access_token); // Update the authentication context
+          const { access_token, username } = response.data;
+          localStorage.setItem("token", access_token);
+          localStorage.setItem("username", username);
+          login(access_token, username); // Update the authentication context
           navigate("/dashboard");
         });
     } catch (error) {

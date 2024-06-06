@@ -8,6 +8,7 @@ import PrivateRoute from "./components/PrivateRoute";
 import Dashboard from "./components/Dashboard";
 import ResearchPortal from "./components/ResearchPortal";
 import MarketMovers from "./components/MarketMovers"; // Import the new component
+import MyAnalysis from "./components/MyAnalysis"; // Import the new component
 
 const App = () => {
   const { isAuthenticated, user } = useContext(AuthContext);
@@ -37,6 +38,14 @@ const App = () => {
           element={
             <DashboardLayout user={user}>
               <MarketMovers />
+            </DashboardLayout>
+          }
+        />
+        <Route
+          path="/my-analysis"
+          element={
+            <DashboardLayout user={user}>
+              <MyAnalysis />
             </DashboardLayout>
           }
         />

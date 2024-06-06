@@ -67,14 +67,19 @@ const MyTradesRow = ({
         <div className="relative w-full h-4 bg-gray-300 rounded">
           <div
             className={`absolute top-0 left-0 h-4 ${
-              targetReached >= 100
+              targetReached >= 50
                 ? "bg-green-500"
                 : targetReached >= 0
                 ? "bg-yellow-500"
+                : targetReached < 0
+                ? "bg-red-500"
                 : "bg-red-500"
             } rounded`}
             // style={{ width: `${targetReachedPercentage}%` }}
-            style={{ width: `${Math.abs(targetReachedPercentage)}%` }}
+            // style={{ width: `${Math.abs(targetReachedPercentage)}%` }}
+            style={{
+              width: `${Math.min(Math.abs(targetReachedPercentage), 100)}%`,
+            }}
           ></div>
         </div>
         <span className="text-xs text-gray-700">

@@ -1,4 +1,6 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import { format } from "date-fns";
+import { parseISO, differenceInDays } from "date-fns";
 
 const Balance = ({ trades }) => {
   const calculateTotalCurrentValue = (trades) => {
@@ -29,11 +31,51 @@ const Balance = ({ trades }) => {
     return trades.reduce((acc, trade) => acc + trade.trade_total_price, 0);
   };
 
+  const calculateCAGR = (initialInvestment, currentTotalValue, trades) => {
+    const xirr = (values, dates) => {
+      const xnpv = (rate, values, dates) => {
+        return values.reduce((sum, value, i) => {
+          const diffDays = differenceInDays(
+            parseISO(dates[i]),
+            parseISO(dates[0])
+          );
+          return sum + value / Math.pow(1 + rate, diffDays / 365);
+        }, 0);
+      };
+
+      const guess = 0.1;
+      const tol = 1e-6;
+      let rate = guess;
+      let iteration = 0;
+      while (iteration < 100) {
+        const xnpvRate = xnpv(rate, values, dates);
+        const xnpvRatePlusTol = xnpv(rate + tol, values, dates);
+        const deriv = (xnpvRatePlusTol - xnpvRate) / tol;
+        const newRate = rate - xnpvRate / deriv;
+        if (Math.abs(newRate - rate) < tol) return newRate;
+        rate = newRate;
+        iteration++;
+      }
+      return rate;
+    };
+
+    const cashFlows = trades.map((trade) => -trade.trade_total_price);
+    cashFlows.push(currentTotalValue);
+    const tradeDates = trades.map((trade) => trade.trade_entry_date);
+    tradeDates.push(format(new Date(), "yyyy-MM-dd"));
+
+    // console.log("Cash Flows: ", cashFlows);
+    // console.log("Trade Dates: ", tradeDates);
+
+    return xirr(cashFlows, tradeDates);
+  };
+
   const totalCurrentValue = calculateTotalCurrentValue(trades);
   const daysPL = calculateDaysPL(trades);
   const totalReturn = calculateTotalReturn(trades);
   const totalInitialInvestment = calculateTotalInitialInvestment(trades);
   const overallRateOfReturn = (totalReturn / totalInitialInvestment) * 100;
+  const cagr = calculateCAGR(totalInitialInvestment, totalCurrentValue, trades);
 
   return (
     <div className="bg-white shadow-lg p-6 rounded-lg">
@@ -82,6 +124,13 @@ const Balance = ({ trades }) => {
           </span>
           <span className="text-2xl font-bold text-teal-700">
             {overallRateOfReturn.toFixed(2)}%
+          </span>
+        </div>
+
+        <div className="flex justify-between items-center bg-yellow-100 p-4 rounded">
+          <span className="text-lg font-semibold text-yellow-700">CAGR:</span>
+          <span className="text-2xl font-bold text-yellow-700">
+            {(cagr * 100).toFixed(2)}%
           </span>
         </div>
       </div>
