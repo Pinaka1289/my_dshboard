@@ -35,16 +35,7 @@ const Sidebar = () => {
               Dashboard
             </Link>
           </li>
-          <li className="mb-4">
-            <a href="#" className="text-purple-700 hover:text-purple-900">
-              Portfolio
-            </a>
-          </li>
-          <li className="mb-4">
-            <a href="#" className="text-purple-700 hover:text-purple-900">
-              Trading & Market
-            </a>
-          </li>
+
           <li className="mb-4">
             <Link
               to="/research"
@@ -69,7 +60,14 @@ const Sidebar = () => {
               My Analysis
             </Link>
           </li>
-
+          <li className="mb-4">
+            <Link
+              to="/market-calendar"
+              className="text-purple-700 hover:text-purple-900"
+            >
+              Market Calendar
+            </Link>
+          </li>
           <li className="mb-4">
             <a href="#" className="text-purple-700 hover:text-purple-900">
               Reporting & Transaction

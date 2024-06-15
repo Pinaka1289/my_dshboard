@@ -86,7 +86,11 @@ const Balance = ({ trades }) => {
             Initial Investment:
           </span>
           <span className="text-2xl font-bold text-purple-700">
-            ₹{totalInitialInvestment.toFixed(2)}
+            ₹
+            {totalInitialInvestment.toLocaleString("en-IN", {
+              minimumFractionDigits: 2,
+              maximumFractionDigits: 2,
+            })}
           </span>
         </div>
         <div className="flex justify-between items-center bg-blue-100 p-4 rounded">
@@ -94,7 +98,11 @@ const Balance = ({ trades }) => {
             Current Value:
           </span>
           <span className="text-2xl font-bold text-blue-700">
-            ₹{totalCurrentValue.toFixed(2)}
+            ₹
+            {totalCurrentValue.toLocaleString("en-IN", {
+              minimumFractionDigits: 2,
+              maximumFractionDigits: 2,
+            })}
           </span>
         </div>
         <div className="flex justify-between items-center bg-orange-100 p-4 rounded">
@@ -102,7 +110,11 @@ const Balance = ({ trades }) => {
             Total Return:
           </span>
           <span className="text-2xl font-bold text-orange-700">
-            ₹{totalReturn.toFixed(2)}
+            ₹
+            {totalReturn.toLocaleString("en-IN", {
+              minimumFractionDigits: 2,
+              maximumFractionDigits: 2,
+            })}
           </span>
         </div>
         <div className="flex justify-between items-center bg-green-100 p-4 rounded">
@@ -114,7 +126,11 @@ const Balance = ({ trades }) => {
               daysPL >= 0 ? "text-green-700" : "text-red-700"
             }`}
           >
-            ₹{daysPL.toFixed(2)}
+            ₹
+            {daysPL.toLocaleString("en-IN", {
+              minimumFractionDigits: 2,
+              maximumFractionDigits: 2,
+            })}
           </span>
         </div>
 
@@ -123,14 +139,22 @@ const Balance = ({ trades }) => {
             Overall Rate of Return:
           </span>
           <span className="text-2xl font-bold text-teal-700">
-            {overallRateOfReturn.toFixed(2)}%
+            {overallRateOfReturn.toLocaleString("en-IN", {
+              minimumFractionDigits: 2,
+              maximumFractionDigits: 2,
+            })}
+            %
           </span>
         </div>
 
         <div className="flex justify-between items-center bg-yellow-100 p-4 rounded">
           <span className="text-lg font-semibold text-yellow-700">CAGR:</span>
           <span className="text-2xl font-bold text-yellow-700">
-            {(cagr * 100).toFixed(2)}%
+            {(cagr * 100).toLocaleString("en-IN", {
+              minimumFractionDigits: 2,
+              maximumFractionDigits: 2,
+            })}
+            %
           </span>
         </div>
       </div>

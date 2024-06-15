@@ -9,6 +9,7 @@ const apiConfig = {
   ALL_STOCKS: `${API_BASE_URL}/stocks/all`,
   ALL_TICKERS: `${API_BASE_URL}/stocks/stock_tickers`,
   MAIN_INDICES: `${API_BASE_URL}/market_movers/main_indices`,
+  HOLIDAY_CALENDAR: `${API_BASE_URL}/market_movers/holiday_calendar`,
   // Add more endpoints as needed
 };
 

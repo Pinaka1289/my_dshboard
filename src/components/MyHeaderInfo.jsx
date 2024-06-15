@@ -1,10 +1,9 @@
 import React from "react";
 import useFetch from "../hooks/useFetch";
+import apiConfig from "../config/apiConfig"; // Import the configuration
 
 const MyHeaderInfo = () => {
-  const { data, loading, error } = useFetch(
-    "http://localhost:8000/market_movers/main_indices"
-  );
+  const { data, loading, error } = useFetch(apiConfig.MAIN_INDICES);
 
   if (loading) return <div>Loading...</div>;
   if (error) return <div>Error: {error.message}</div>;

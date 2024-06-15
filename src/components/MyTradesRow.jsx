@@ -16,7 +16,6 @@ const MyTradesRow = ({
     trade.quantity,
     currentPrice
   );
-
   const returns = calculateReturns(totalGainLoss, trade.trade_total_price);
   const targetReached = calculateTargetReached(
     currentPrice,
@@ -109,7 +108,7 @@ const MyTradesRow = ({
         </button>
         <button
           className="px-2 py-1 bg-red-500 text-white rounded"
-          onClick={() => onDelete(trade.id)}
+          onClick={() => onDelete(trade.trade_id)}
         >
           Delete
         </button>

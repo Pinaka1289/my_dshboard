@@ -19,6 +19,7 @@ const MyTrades = ({ trades, refetch }) => {
       const config = {
         headers: {
           Authorization: `Bearer ${token}`,
+          "Content-Type": "application/x-www-form-urlencoded",
         },
       };
       await axios.delete(`${apiConfig.STOCKS}/${tradeId}`, config);

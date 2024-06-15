@@ -9,6 +9,7 @@ import Dashboard from "./components/Dashboard";
 import ResearchPortal from "./components/ResearchPortal";
 import MarketMovers from "./components/MarketMovers"; // Import the new component
 import MyAnalysis from "./components/MyAnalysis"; // Import the new component
+import MarketCalendar from "./components/MarketCalendar";
 
 const App = () => {
   const { isAuthenticated, user } = useContext(AuthContext);
@@ -46,6 +47,14 @@ const App = () => {
           element={
             <DashboardLayout user={user}>
               <MyAnalysis />
+            </DashboardLayout>
+          }
+        />
+        <Route
+          path="/market-calendar"
+          element={
+            <DashboardLayout user={user}>
+              <MarketCalendar />
             </DashboardLayout>
           }
         />
