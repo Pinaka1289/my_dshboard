@@ -1,16 +1,15 @@
 import React from "react";
-import MyStocks from "./MyStocks";
-import Balance from "./Balance";
-import MyTopDayMovers from "./MyTopDayMovers";
-import MyTopPortfolioMovers from "./MyTopPortfolioMovers";
-import Snapshot from "./Snapshot";
+import MyStocks from "../Dashboard/MyStocks";
+import Balance from "../Dashboard/Balance";
+import MyTopDayMovers from "../Dashboard/MyTopDayMovers";
+import MyTopPortfolioMovers from "../Dashboard/MyTopPortfolioMovers";
 import PortfolioAnalytics from "./PortfolioAnalytics";
-import MyWatchlist from "./MyWatchlist";
+import MyWatchlist from "../Dashboard/MyWatchlist";
 import { useNavigate } from "react-router-dom";
-import MyTrades from "./MyTrades";
-import useFetch from "../hooks/useFetch";
-import apiConfig from "../config/apiConfig";
-import LoadingSpinner from "./LoadingSpinner";
+import MyTrades from "../MyTrades/MyTrades";
+import useFetch from "../../hooks/useFetch";
+import apiConfig from "../../config/apiConfig";
+import LoadingSpinner from "../Dashboard/LoadingSpinner";
 
 const Dashboard = () => {
   const {
@@ -83,10 +82,7 @@ const Dashboard = () => {
       ) : (
         <MyTopPortfolioMovers trades={trades} />
       )}
-      {/* <div className="lg:col-span-3">
-        <Snapshot />
-      </div>
-      <PortfolioAnalytics /> */}
+
       <MyWatchlist />
       <button
         onClick={handleLogout}

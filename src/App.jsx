@@ -1,15 +1,15 @@
 import React, { useContext } from "react";
 import { Route, Routes, Navigate } from "react-router-dom";
-import LandingPage from "./components/LandingPage";
-import DashboardLayout from "./components/DashboardLayout";
-import NotFound from "./components/NotFound";
+import LandingPage from "./components/user/LandingPage";
+import DashboardLayout from "./components/sidebar/DashboardLayout";
+import NotFound from "./components/common/NotFound";
 import AuthContext from "./contexts/AuthContext";
-import PrivateRoute from "./components/PrivateRoute";
-import Dashboard from "./components/Dashboard";
-import ResearchPortal from "./components/ResearchPortal";
-import MarketMovers from "./components/MarketMovers"; // Import the new component
-import MyAnalysis from "./components/MyAnalysis"; // Import the new component
-import MarketCalendar from "./components/MarketCalendar";
+import PrivateRoute from "./components/common/PrivateRoute";
+import Dashboard from "./components/sidebar/Dashboard";
+import ResearchPortal from "./components/sidebar/ResearchPortal";
+import MarketMovers from "./components/Header/MarketMovers"; // Import the new component
+import MyAnalysis from "./components/sidebar/MyAnalysis"; // Import the new component
+import MarketCalendar from "./components/sidebar/MarketCalendar";
 
 const App = () => {
   const { isAuthenticated, user } = useContext(AuthContext);

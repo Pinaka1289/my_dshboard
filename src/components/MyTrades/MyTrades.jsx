@@ -1,9 +1,9 @@
 import React, { useState } from "react";
-import AddStockButton from "./AddStockButton";
-import MyTradesTable from "./MyTradesTable";
-import EditTradeForm from "./EditTradeForm";
+import AddStockButton from "../AddStock/AddStockButton";
+import MyTradesTable from "../MyTrades/MyTradesTable";
+import EditTradeForm from "../AddStock/EditTradeForm";
 import axios from "axios";
-import apiConfig from "../config/apiConfig";
+import apiConfig from "../../config/apiConfig";
 
 const MyTrades = ({ trades, refetch }) => {
   const [isExpanded, setIsExpanded] = useState(false);

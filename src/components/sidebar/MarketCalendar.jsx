@@ -2,8 +2,8 @@ import React, { useState, useEffect } from "react";
 import { Calendar, dateFnsLocalizer } from "react-big-calendar";
 import { format, parse, startOfWeek, getDay, addDays } from "date-fns";
 import enUS from "date-fns/locale/en-US";
-import useFetch from "../hooks/useFetch";
-import apiConfig from "../config/apiConfig"; // Import the configuration
+import useFetch from "../../hooks/useFetch";
+import apiConfig from "../../config/apiConfig"; // Import the configuration
 import "react-big-calendar/lib/css/react-big-calendar.css";
 
 const locales = {

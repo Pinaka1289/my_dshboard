@@ -1,7 +1,7 @@
 import React from "react";
-import Header from "./Header";
+import Header from "../Header/Header";
 import Sidebar from "./Sidebar";
-import Footer from "./Footer";
+import Footer from "../Footer/Footer";
 
 function DashboardLayout({ user, children }) {
   const username = localStorage.getItem("username");

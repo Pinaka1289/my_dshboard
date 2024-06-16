@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
-import apiConfig from "../config/apiConfig"; // Import the configuration
+import apiConfig from "../../config/apiConfig"; // Import the configuration
 const SignUp = ({ onToggle }) => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");

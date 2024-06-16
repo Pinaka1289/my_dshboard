@@ -1,6 +1,6 @@
 import React from "react";
-import useFetch from "../hooks/useFetch";
-import apiConfig from "../config/apiConfig"; // Import the configuration
+import useFetch from "../../hooks/useFetch";
+import apiConfig from "../../config/apiConfig"; // Import the configuration
 
 const MyHeaderInfo = () => {
   const { data, loading, error } = useFetch(apiConfig.MAIN_INDICES);

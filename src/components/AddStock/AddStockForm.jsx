@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import useFetch from "../hooks/useFetch";
-import apiConfig from "../config/apiConfig"; // Import the configuration
+import useFetch from "../../hooks/useFetch";
+import apiConfig from "../../config/apiConfig"; // Import the configuration
 import AddStockTickerInput from "./AddStockTickerInput";
 import AddStockFormInputs from "./AddStockFormInputs";
 import AddStockFormButtons from "./AddStockFormButtons";

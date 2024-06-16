@@ -1,8 +1,8 @@
 import React, { useState, useContext } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import AuthContext from "../contexts/AuthContext";
-import apiConfig from "../config/apiConfig"; // Import the configuration
+import AuthContext from "../../contexts/AuthContext";
+import apiConfig from "../../config/apiConfig"; // Import the configuration
 
 const SignIn = ({ onToggle }) => {
   const [username, setUsername] = useState("");
