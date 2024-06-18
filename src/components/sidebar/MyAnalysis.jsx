@@ -3,6 +3,7 @@ import MyAnalysisForm from "../MyAnalysis/MyAnalysisForm";
 import MyAnalysisChart from "../MyAnalysis/MyAnalysisChart";
 import useFetch from "../../hooks/useFetch";
 import apiConfig from "../../config/apiConfig";
+import AnalysisFetcher from "../MyAnalysis/AnalysisFetcher"; // Import the AnalysisFetcher component
 
 function MyAnalysis() {
   const [symbol, setSymbol] = useState("");
@@ -10,9 +11,12 @@ function MyAnalysis() {
   const [interval, setInterval] = useState("1d");
   const [startDate, setStartDate] = useState("");
   const [endDate, setEndDate] = useState("");
+  const [fetchUrl, setFetchUrl] = useState(""); // State to store the constructed URL
   const container = useRef();
 
   const { data: stockTickersData } = useFetch(apiConfig.ALL_TICKERS);
+  const { data: analysisData, loading, error, refetch } = useFetch(fetchUrl); // Use the useFetch hook with the constructed URL
+
   const [filteredTickers, setFilteredTickers] = useState([]);
   const [inputValue, setInputValue] = useState("");
 
@@ -81,11 +85,15 @@ function MyAnalysis() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log("Selected Ticker:", symbol);
-    console.log("Selected Duration:", duration);
-    console.log("Selected Interval:", interval);
-    console.log("Start Date:", startDate);
-    console.log("End Date:", endDate);
+    let url = `http://127.0.0.1:8000/analysis/${symbol}?interval=${interval}`;
+    if (duration) {
+      url += `&period=${duration}`;
+    } else if (startDate && endDate) {
+      url += `&start_date=${startDate}&end_date=${endDate}`;
+    }
+    url += `&unique=${Date.now()}`; // Append a unique timestamp to ensure a fresh fetch
+    setFetchUrl(url); // Set the constructed URL
+    refetch(); // Trigger the fetch
   };
 
   return (
@@ -108,6 +116,12 @@ function MyAnalysis() {
         handleSubmit={handleSubmit}
         clearDates={clearDates}
       />
+      {loading && <p>Loading data...</p>}
+      {error && <p>Error fetching data: {error.message}</p>}
+      {fetchUrl && !loading && !error && analysisData && (
+        <AnalysisFetcher data={analysisData} />
+      )}{" "}
+      {/* Pass the analysisData to AnalysisFetcher */}
     </div>
   );
 }

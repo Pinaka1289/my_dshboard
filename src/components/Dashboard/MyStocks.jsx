@@ -11,7 +11,7 @@ const MyStocks = () => {
     loading: stocksLoading,
     error: stocksError,
     refetch,
-  } = useFetch(apiConfig.ALL_STOCKS); // Replace with your actual endpoint
+  } = useFetch(apiConfig.ALL_STOCKS);
 
   if (stocksLoading) {
     return <MyStocksLoading />;
